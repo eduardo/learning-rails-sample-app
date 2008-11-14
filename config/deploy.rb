@@ -4,11 +4,6 @@
 set :application, "conferenciaror"
 
 default_run_options[:pty] = true
-#set :repository,  "."
-#set :scm, "git"
-#set :branch, "master"
-
-default_run_options[:pty] = true
 set :repository,  "git://github.com/eduardo/learning-rails-sample-app.git"
 set :scm, "git"
 set :branch, "master"
@@ -21,10 +16,10 @@ ssh_options[:keys] = ["#{ENV['HOME']}/.ec2/ec2-keypair"]
 # Your EC2 instances. Use the ec2-xxx....amazonaws.com hostname, not
 # any other name (in case you have your own DNS alias) or it won't
 # be able to resolve to the internal IP address.
-role :web,      "ec2-75-101-177-154.compute-1.amazonaws.com"
-role :app,      "ec2-75-101-177-154.compute-1.amazonaws.com"
-role :memcache, "ec2-75-101-177-154.compute-1.amazonaws.com"
-role :db,       "ec2-75-101-177-154.compute-1.amazonaws.com", :primary => true
+role :web,      "ec2-75-101-230-213.compute-1.amazonaws.com"
+role :app,      "ec2-75-101-230-213.compute-1.amazonaws.com"
+role :memcache, "ec2-75-101-230-213.compute-1.amazonaws.com"
+role :db,       "ec2-75-101-230-213.compute-1.amazonaws.com", :primary => true
 # role :db,       "ec2-56-xx-xx-xx.z-1.compute-1.amazonaws.com", :primary => true, :ebs_vol_id => 'vol-12345abc'
 # optinally, you can specify Amazon's EBS volume ID if the database is persisted 
 # via Amazon's EBS.  See the main README for more information.
@@ -105,11 +100,3 @@ set :ec2onrails_config, {
   # /etc/ssl/private/default.key (see :server_config_files_root).
   #:enable_ssl => true
 }
-
-after "ec2onrails:setup", "emptylog"
-
-desc "create an empty production log"
-task :emptylog, :roles =>[:app] do
-  run "touch #{shared_path}/log/production.log"
-  run "chmod 666 #{shared_path}/log/production.log"  
-end
