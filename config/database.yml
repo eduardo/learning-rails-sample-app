@@ -13,9 +13,10 @@ test:
   database: db/test.sqlite3
   timeout: 5000
 
-production:
+  production:
     adapter: mysql
-    database: learningrails_production
-    username: deploy
-    password: secret
-    host: localhost
+    database: conferenciaror
+    encoding: utf8
+    username: user
+    password: nada
+    host: db_primary
